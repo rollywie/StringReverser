@@ -36,9 +36,6 @@ internal class Program
                     ReversedWords.Add(reversedString);
                 }
 
-                // Added Comment!
-                Console.Write("sdsad");
-
                 // Print each item from List to console and clear the list for next try.
                 ReversedWords.ForEach(w => Console.Write("{0}\t", w));
                 ReversedWords.Clear();
