@@ -2,6 +2,26 @@
 
 internal class Program
 {
+    // Function Section
+    public static char[] Revers(char[] x)
+    {
+        // Get the length of array and create array with same size
+        int xLenght = x.Length;
+        char[] newArray = new char[xLenght];
+
+        int pos = 0;
+
+        foreach (char c in x)
+        {
+            newArray[pos] = x[xLenght - 1];
+            pos ++;
+            xLenght = xLenght - 1;
+        }
+        
+        // Check for space, to determent where a word ends
+        return newArray;
+    }
+
     private static void Main(string[] args)
     {
         // Explain the application
@@ -10,7 +30,6 @@ internal class Program
 
         //initialize variables
         string? input = null;
-        List<string> ReversedWords = new();
 
         do
         {
@@ -20,25 +39,12 @@ internal class Program
 
             if (input != "EXIT" && b is not true)
             {
-                // Split word at space and store in List.
+                // Split word at space and store all characters in array
                 Console.WriteLine("\n");
-                List<string> Words = input.Split(" ").ToList();
+                char[] inputChar = input.ToCharArray();
 
-                // Remove all values which are "" due to wrong input
-                Words.RemoveAll(w => string.IsNullOrWhiteSpace(w));
-
-                // Take each value, revers and put back to list.
-                foreach (string word in Words)
-                {
-                    char[] strArray = word.ToCharArray();
-                    Array.Reverse(strArray);
-                    string reversedString = new string(strArray);
-                    ReversedWords.Add(reversedString);
-                }
-
-                // Print each item from List to console and clear the list for next try.
-                ReversedWords.ForEach(w => Console.Write("{0}\t", w));
-                ReversedWords.Clear();
+                // Function output
+                Console.Write(Revers(inputChar));
 
                 Console.WriteLine("\n");
                 Console.WriteLine("Please give an other string input or type 'EXIT' to exit the application.");
