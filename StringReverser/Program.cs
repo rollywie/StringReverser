@@ -1,25 +1,54 @@
-﻿using System.Diagnostics.Tracing;
+﻿using System;
+using System.Diagnostics.Tracing;
 
 internal class Program
 {
     // Function Section
+
+    public static int[] Spaces(char[] x)
+    {
+        int start = 0;
+        List<int> Result = new();
+
+        // Check for space, to determent where a word ends
+        foreach (char c in x)
+        {
+            bool whiteSpaceCheck = char.IsWhiteSpace(c);
+
+            if (whiteSpaceCheck is true)
+            {
+                Result.Add(start);
+            }
+
+            start++;
+        }
+
+        return Result.ToArray();
+    }
+
     public static char[] Revers(char[] x)
     {
+        int pos = 0;
+
+        // Print values
+        foreach (var item in Spaces(x) )
+        {
+            Console.WriteLine(item.ToString());
+        }
+
         // Get the length of array and create array with same size
         int xLenght = x.Length;
         char[] newArray = new char[xLenght];
 
-        int pos = 0;
-
         foreach (char c in x)
-        {
+        {   
             newArray[pos] = x[xLenght - 1];
             pos ++;
             xLenght = xLenght - 1;
         }
-        
-        // Check for space, to determent where a word ends
+
         return newArray;
+
     }
 
     private static void Main(string[] args)
@@ -29,7 +58,7 @@ internal class Program
         Console.WriteLine("To exit the application, please type 'EXIT' and press ENTER.");
 
         //initialize variables
-        string? input = null;
+        string? input;
 
         do
         {
